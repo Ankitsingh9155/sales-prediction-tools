@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📊 Sales Forecast Results</h1>
+    {{ graph|safe }}
+    <h2>📄 Prediction Table</h2>
+    <div class="container">
+        {{ tables[0]|safe }}
+    </div>
+    <br>
+    <a href="/">⬅️ Go Back</a>
+</body>
+</html>

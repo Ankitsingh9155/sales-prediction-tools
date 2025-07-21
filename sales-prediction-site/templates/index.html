@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sales Prediction</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      overflow-x: hidden;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #1f1f1f, #111);
+      box-shadow: 0 0 30px #00ffcc;
+      animation: slideUp 1.5s ease;
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffe1;
+      font-size: 2.7em;
+      text-shadow: 0 0 15px #00ffe1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ffe1; }
+      50% { text-shadow: 0 0 20px #00ffe1, 0 0 40px #00ffe1; }
+    }
+
+    .rainbow-text {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      background: linear-gradient(
+        -45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00aa
+      );
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 5s ease infinite;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .preview-img {
+      display: block;
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      margin: 30px auto;
+      border: 2px solid #00ffcc;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffcc;
+      transition: transform 0.4s ease;
+    }
+
+    .preview-img:hover {
+      transform: scale(1.02);
+    }
+
+    form {
+      text-align: center;
+      margin-top: 40px;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    input[type="file"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #222;
+      color: #00ffe1;
+      font-size: 1em;
+      box-shadow: 0 0 10px #00ffe1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input[type="file"]:hover {
+      background-color: #111;
+      box-shadow: 0 0 15px #00ffe1, 0 0 25px #00ffe1;
+      transform: scale(1.02);
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #00ffe1;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffe1;
+      margin-top: 10px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00ccbf;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 20px;
+      color: #aaa;
+      animation: fadeIn 3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📈 Product Sales Prediction</h1>
+    <h3 class="rainbow-text">✨ Designed by Ankit Singh</h3>
+
+    <p>
+      Welcome to the Sales Forecasting Tool! With the power of machine learning, you can now predict your future sales trends based on past data.
+      Simply upload your sales data in CSV or Excel format, and our smart algorithm will analyze it to provide you with accurate future predictions
+      and beautiful interactive charts. Ideal for businesses aiming to boost performance, plan inventory, or track growth!
+    </p>
+
+    <img src="{{ url_for('static', filename='sale1.png') }}" alt="Sales Graph" class="preview-img" />
+
+    <form action="/preview" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv,.xlsx" required />
+      <br><br>
+      <button type="submit">Upload & Preview</button>
+    </form>
+
+    <p class="note">
+      Supported formats: .csv, .xlsx | Ensure your file contains 'Date' and 'Sales' columns
+    </p>
+  </div>
+
+</body>
+</html>
